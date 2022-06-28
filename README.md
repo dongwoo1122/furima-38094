@@ -10,24 +10,26 @@
 | name02               | string | null: false               |
 | kana01               | string | null: false               |
 | kana02               | string | null: false               |
-| birthday             | date | null: false               |
+| birthday             | date   | null: false               |
 
 ### Association
 - has_many :items
 - has_many :orders
 
 ## items テーブル
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| name            | string     | null: false                    |
-| description     | text       | null: false                    |
-| category_id     | integer    | null: false                    |
-| item_status_id  | integer    | null: false                    |
-| price           | integer    | null: false                    |
-| delivery_fee_id | integer    | null: false                    |
-| sale_fee_id     | integer    | null: false                    |
-| sale_profit_id  | integer    | null: false                    |
-| user            | references | null: false, foreign_key: true |
+| Column                | Type       | Options                        |
+| --------------------- | ---------- | ------------------------------ |
+| name                  | string     | null: false                    |
+| description           | text       | null: false                    |
+| category_id           | integer    | null: false                    |
+| item_status_id        | integer    | null: false                    |
+| price                 | integer    | null: false                    |
+| delivery_fee_id       | integer    | null: false                    |
+| address_region_id     | integer    | null: false                    |
+| send_time_id          | integer    | null: false                    |
+| sale_fee              | integer    | null: false                    |
+| sale_profit           | integer    | null: false                    |
+| user                  | references | null: false, foreign_key: true |
 
 ### Association
 - has_one :order
@@ -47,12 +49,12 @@
 ## deliveries テーブル
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| address_region     | string     | null: false  |
-| address_city       | string     | null: false  |
-| address_street     | string     | null: false  |
-| address_building   | string     |              |
-| postcode           | string     | null: false  |
-| phone_number       | string     | null: false  |
+| address_region_id  | integer    | null: false                    |
+| address_city       | string     | null: false                    |
+| address_street     | string     | null: false                    |
+| address_building   | string     |                                |
+| postcode           | string     | null: false                    |
+| phone_number       | string     | null: false                    |
 | order              | references | null: false, foreign_key: true |
 
 ### Association
