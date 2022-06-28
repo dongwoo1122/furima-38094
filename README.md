@@ -5,7 +5,7 @@
 | -------------------- | ------ | ------------------------- |
 | nickname             | string | null: false               |
 | email                | string | null: false, unique: true |
-| encryoted_password   | string | null: false               |
+| encrypted_password   | string | null: false               |
 | name01               | string | null: false               |
 | name02               | string | null: false               |
 | kana01               | string | null: false               |
@@ -27,8 +27,6 @@
 | delivery_fee_id       | integer    | null: false                    |
 | address_region_id     | integer    | null: false                    |
 | send_time_id          | integer    | null: false                    |
-| sale_fee              | integer    | null: false                    |
-| sale_profit           | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true |
 
 ### Association
