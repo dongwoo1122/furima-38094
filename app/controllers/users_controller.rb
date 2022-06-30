@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  def edit
+  def edit #editアクション
   end
 
 end
