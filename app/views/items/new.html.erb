@@ -7,10 +7,8 @@
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, url: items_path, local: true do |f| %>
 
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <%# render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-
+    <%= render 'shared/error_messages', model: f.object %>
+    <%= render partial: "tweet", locals: { tweet: tweet } %>
     <%# 商品画像 %>
     <div class="img-upload">
       <div class="weight-bold-text">
@@ -71,17 +69,17 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:delivery_fee, DeliveryFee.all, :id, :name, {}, {class:"select-box", id:"item-delivery-fee"}) %>
+        <%= f.collection_select(:delivery_fee_id, DeliveryFee.all, :id, :name, {}, {class:"select-box", id:"item-delivery-fee"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:address_region, AddressRegion.all, :id, :name, {}, {class:"select-box", id:"item-address-region"}) %>
+        <%= f.collection_select(:address_region_id, AddressRegion.all, :id, :name, {}, {class:"select-box", id:"item-address-region"}) %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:send_time, SendTime.all, :id, :name, {}, {class:"select-box", id:"item-send-time"}) %>
+        <%= f.collection_select(:send_time_id, SendTime.all, :id, :name, {}, {class:"select-box", id:"item-send-time"}) %>
       </div>
     </div>
     <%# /配送について %>
