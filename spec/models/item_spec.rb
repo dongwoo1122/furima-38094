@@ -7,7 +7,6 @@ RSpec.describe Item, type: :model do
   describe '出品内容の保存' do
     context "出品内容が保存できる場合" do
       it "全ての項目があれば出品内容は保存される" do
-        @item.price = 300
         expect(@item).to be_valid
       end
     end
@@ -23,9 +22,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
       it "category_idが空では登録できない" do
-        @item.category_id = ''
+        @item.category_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
       it "priceが空では登録できない" do
         @item.price = ''
@@ -48,19 +47,24 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
       it "delivery_fee_idが空では登録できない" do
-        @item.delivery_fee_id = ''
+        @item.delivery_fee_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
       end
       it "address_region_idが空では登録できない" do
-        @item.address_region_id = ''
+        @item.address_region_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Address region can't be blank")
+        expect(@item.errors.full_messages).to include("Address region must be other than 1")
       end
       it "send_time_idが空では登録できない" do
-        @item.send_time_id = ''
+        @item.send_time_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Send time can't be blank")
+        expect(@item.errors.full_messages).to include("Send time must be other than 1")
+      end
+      it "ユーザー情報がない場合は登録できない" do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
