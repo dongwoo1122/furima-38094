@@ -1,3 +1,3 @@
 class Delivery < ApplicationRecord
-  belong_to :order
+  belongs_to :order
 end
