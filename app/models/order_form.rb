@@ -5,12 +5,12 @@ class OrderForm
     with_options presence: true do
       validates :user_id
       validates :item_id
-      validates :address_city, presence: true
-      validates :address_street, presence: true
+      validates :address_city
+      validates :address_street
       validates :address_building, presence: false
-      validates :postcode, presence: true, format: { with:/\A\d{3}[-]\d{4}\z/}
-      validates :phone_number, presence: true, format: { with:/\A\d{10,11}\z/}
-      validates :token, presence: true
+      validates :postcode, format: { with:/\A\d{3}[-]\d{4}\z/}
+      validates :phone_number, format: { with:/\A\d{10,11}\z/}
+      validates :token
     end
       validates :address_region_id, presence: true, numericality: { other_than: 1}
 
