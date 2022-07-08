@@ -1,14 +1,15 @@
 require 'rails_helper'
 RSpec.describe OrderForm, type: :model do
-  describe '配送先情報の登録' do
+  describe '購入内容の登録' do
       before do
         @user = FactoryBot.create(:user)
         @item = FactoryBot.create(:item)
+        @item.image = fixture_file_upload('public/images/test_image.png')
         @order_form = FactoryBot.build(:order_form, user_id: @user.id, item_id: @item.id)
       end
 
-    context "配送先情報が登録できる場合" do
-      it "全ての項目があれば出品内容は保存される" do
+    context "購入ができる場合" do
+      it "全ての項目があれば購入できること" do
         expect(@order_form).to be_valid
       end
       it 'address_buildingは空でも保存できること' do
@@ -17,7 +18,7 @@ RSpec.describe OrderForm, type: :model do
       end
     end
 
-    context "出品内容が保存できない場合" do
+    context "購入ができない場合" do
       it "postcodeが空では登録できない" do
         @order_form.postcode = ''
         @order_form.valid?
@@ -52,7 +53,12 @@ RSpec.describe OrderForm, type: :model do
         @order_form.phone_number = '090-1234-5678'
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Phone number is invalid")
-      end      
+      end
+      it "tokenが空では登録できないこと" do
+        @order_form.token = ''
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end

@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   validates :address_region_id, presence: true, numericality: { other_than: 1 }
   validates :send_time_id, presence: true, numericality: { other_than: 1 }
 
+  has_one :order
   belongs_to :user
   has_one_attached :image
 
