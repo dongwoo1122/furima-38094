@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    if @item.user_id == current_user.id || @item.order != nil
+    if @item.order != nil
       redirect_to root_path
     end
   end
