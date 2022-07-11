@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   validates :delivery_fee_id, presence: true, numericality: { other_than: 1 }
   validates :address_region_id, presence: true, numericality: { other_than: 1 }
   validates :send_time_id, presence: true, numericality: { other_than: 1 }
+  validates :image, presence: true
 
   has_one :order
   belongs_to :user
